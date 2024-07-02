@@ -109,7 +109,25 @@ app.get('/api/films/:id/characters', async (req, res) => {
         res.json(chars)
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("test error");
+        res.status(500).send("Cannot find any characters associated with film");
+    }
+})
+
+app.get('/api/films/:id/planets', async (req, res) => {
+    // get all planets associated with a certain film id
+    try {
+        const { id } = req.params
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        let collection = db.collection(dbCollections[4]);
+        const filmAndPlanet = await collection.find({'film_id': +id}).toArray();
+        const planet_ids = filmAndPlanet.map(x => x.planet_id)
+        collection = db.collection(dbCollections[1]); // swap to planet collection
+        const planets = await collection.find({'id': {$in: planet_ids}}).toArray();
+        res.json(planets)
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Cannot find any planets associated with film");
     }
 })
 
