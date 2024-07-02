@@ -1,6 +1,7 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 // mongo initialization
 dotenv.config();
@@ -12,6 +13,7 @@ const dbCollections = ['characters', 'planets', 'films',
 const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors()); // Enable CORS for all routes
 const PORT = 3000;
 
 app.get('/api/characters', async (req, res) => {
