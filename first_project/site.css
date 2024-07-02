@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "Chakra Petch", Arial, Helvetica, sans-serif;
+  --dark1: #28282B;
+  --light1: white;
+  --dark2: gold;
+  --light2: #28282B;
+  background-color: var(--dark1);
+  color: var(--light1);
+}
+
+h1 {
+  text-align: center;
+  padding: 3rem
+}
+
+button {
+  background-color: var(--light2);
+  color: var(--dark2);
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--dark2);
+}
+
+input {
+  display: block;
+  width: 95%;
+  font-weight: bold;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  border: none;
+  border-bottom: 2px solid var(--dark2);
+  outline: none;
+  margin: 5px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.small {
+  font-size: small;
+  font-weight: normal;
+}
+
+/* Characters/Planets */
+#charactersList,
+#planetsList,
+#filmsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+#charactersList div,
+#planetsList div,
+#filmsList div {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--dark2);
+  border-radius: 5px;
+  color: var(--dark2);
+  background-color: var(--light2);
+  font-weight: bold;
+  transition: all, .25s ;
+}
+
+#charactersList div:hover,
+#planetsList div:hover,
+#filmsList div:hover {
+  color: var(--light2);
+  background-color: var(--dark2);
+  scale: 1.1;
+}
+
+/* Character page */
+h1#name {
+  margin: 50px;
+}
+
+#generalInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+}
+
+#generalInfo p {
+  padding: 20px;
+  margin: 10px;
+  color: var(--dark2);
+  background-color: var(--light2);
+  border: 1px, solid, var(--dark2);
+}
+
+#generalInfo span {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+section#planets,
+section#characters,
+section#films {
+  margin: 50px;
+}
+
+section#planets ul,
+section#characters ul,
+section#films ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section#planets a,
+section#characters a,
+section#films a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.1em;
+
+  background-color: var(--light2);
+  color: var(--dark2);
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--dark2);
+
+  transition: all .25s;
+}
+
+#search-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#planets a:hover, #characters a:hover, #films a:hover{
+  color: var(--light2);
+  background-color: var(--dark2);
+  scale: 1.1;
+}
+
+#filmsList div:hover{
+  color: var(--light2);
+  background-color: var(--dark2);
+  scale: 1.1;
+}
+
+/* #opening-container {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+#opening {
+  margin: 3rem;
+  text-align: center;
+}
