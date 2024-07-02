@@ -1,6 +1,7 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 // mongo initialization
 dotenv.config();
@@ -11,6 +12,7 @@ const dbName = process.env.MONGO_DB;
 const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors()); 
 const PORT = 3000;
 const dbCollections = ['characters', 'planets', 'films', 
     'films_characters', 'films_planets'];
@@ -111,7 +113,7 @@ app.get('/api/films/:id/characters', async (req, res) => {
         res.json(chars)
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("test error");
+        res.status(500).send("Characters not found associated with the film");
     }
 })
 
@@ -146,7 +148,7 @@ app.get('/api/characters/:id/films', async (req, res) => {
         res.json(chars)
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("test error");
+        res.status(500).send("Cannot find any films associated with characters");
     }
 })
 
@@ -163,7 +165,7 @@ app.get('/api/planets/:id/films', async (req, res) => {
         res.json(chars)
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("test error");
+        res.status(500).send("Cannot find any planets associated with films");
     }
 })
 
@@ -177,7 +179,7 @@ app.get('/api/planets/:id/characters', async (req, res) => {
         res.json(filmAndChar)
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("test error");
+        res.status(500).send("Cannot find any planets associated with characters");
     }
 })
 
