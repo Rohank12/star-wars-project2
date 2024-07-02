@@ -6,7 +6,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 const url = process.env.MONGO_DB_URL;
 const dbName = process.env.MONGO_DB;
-// we have different collections so a base one won't work
+const dbCollections = ['characters', 'planets', 'films', 
+    'films_characters', 'films_planets']
 
 const app = express();
 // Middleware to parse JSON bodies
@@ -17,7 +18,7 @@ app.get('/api/characters', async (req, res) => {
     try {
         const client = await MongoClient.connect(url);
         const db = client.db(dbName);
-        const collection = db.collection("characters");
+        const collection = db.collection(dbCollections[0]);
         const chars = await collection.find({}).toArray();
         res.json(chars);
     } catch (err) {
