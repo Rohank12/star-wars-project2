@@ -95,6 +95,24 @@ app.get('/api/planets/:id', async (req, res) => {
     }
 })
 
+app.get('/api/films/:id/characters', async (req, res) => {
+    // get all characters associated with a certain film id
+    try {
+        const { id } = req.params
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        let collection = db.collection(dbCollections[3]);
+        const filmAndChar = await collection.find({'film_id': +id}).toArray();
+        const char_ids = filmAndChar.map(x => x.character_id)
+        collection = db.collection(dbCollections[0]); // swap to character collection
+        const chars = await collection.find({'id': {$in: char_ids}}).toArray();
+        res.json(chars)
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("test error");
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
