@@ -1,5 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Link
+  } from "react-router-dom";
 
 const Characters = () => {
     const [character, setCharacter] = useState({
@@ -43,6 +49,42 @@ const Characters = () => {
         fetchData();
       }, []);
       console.log(character)
+    
+    return (
+    <>
+  <main>
+    <h1 id="name" />
+    <section id="generalInfo">
+    <h1>A Star Wars Character</h1>
+      <p>
+        Height: {character.characterInfo.height}<span id="height" /> cm
+      </p>
+      <p>
+        Mass: {character.characterInfo.mass}<span id="mass" /> kg
+      </p>
+      <p>
+        Born: {character.characterInfo.birth_year}<span id="birth_year" />
+      </p>
+    </section>
+    <section id="planets">
+      <h2>Homeworld</h2>
+        <div>
+            <Link to={`planets/${character.planetInfo.id}`}>{character.planetInfo.name}</Link>
+        </div>
+        <span id="homeworld" />
+    </section>
+    <section id="films">
+      <h2>Films appeared in</h2>
+      {character.filmsInfo.map(film => (
+        <div key={film.id}>
+            <Link to={`/films/${film.id}`}>{film.title} </Link>
+        </div>
+      ))}
+      <ul />
+    </section>
+  </main>
+    </>
+  )
 }
 
 export default Characters;
