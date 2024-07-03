@@ -18,7 +18,7 @@ const Planets = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                  const response1 = await fetch(`${import.meta.env.VITE_SWAPI_URL}/${id}`);            
+                  const response1 = await fetch(`${import.meta.env.VITE_SWAPI_URL_2}/${id}`);            
                   if (!response1.ok) {
                     throw new Error('Character could not be fetched!');
                 }
