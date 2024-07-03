@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Home from '../components/Home'
 import Planets from "../components/Planets";
 import Characters from "../components/Characters";
+import Planets from "../components/Planets";
+import Films from "../components/Films";
 import {
   BrowserRouter as Router,
   Route,
@@ -48,6 +50,8 @@ function App() {
           <Route path="/" element={<Home data={data} />} />
           <Route path="/planets/:id" element={<Planets/>} />
           <Route path="/characters/:id" element={<Characters />} />
+          <Route path="/planets/:id" element={<Planets />} />
+          <Route path="/films/:id" element={<Films />} />
         </Routes>
       </div>
     </Router>
