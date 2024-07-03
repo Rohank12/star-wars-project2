@@ -54,8 +54,9 @@ const Characters = () => {
     <>
   <main>
     <h1 id="name" />
-    <section id="generalInfo">
     <h1>A Star Wars Character</h1>
+    <h1>{character.characterInfo.name}</h1>
+    <section id="generalInfo">
       <p>
         Height: {character.characterInfo.height}<span id="height" /> cm
       </p>
