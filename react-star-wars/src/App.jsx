@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Home from '../components/Home'
 import Planets from "../components/Planets";
+import Characters from "../components/Characters";
 import {
   BrowserRouter as Router,
   Route,
@@ -46,6 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home data={data} />} />
           <Route path="/planets/:id" element={<Planets/>} />
+          <Route path="/characters/:id" element={<Characters />} />
         </Routes>
       </div>
     </Router>
