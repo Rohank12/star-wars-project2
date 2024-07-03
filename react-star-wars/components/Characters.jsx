@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 
-const Characters = ( {data} ) => {
+const Characters = () => {
     const [character, setCharacter] = useState({
         characterInfo: {},
         planetInfo: {},
@@ -15,23 +15,34 @@ const Characters = ( {data} ) => {
                   if (!response1.ok) {
                     throw new Error('Character could not be fetched!');
                 }
-                let json_response = await response1.json();
-                console.log(json_response)
-                //console.log(character)
+                const char_response = await response1.json();
+                //console.log(json_response)
+                  const response2 = await fetch(`http://localhost:3000/api/characters/${id}/films`);
+                  if (!response2.ok) {
+                    throw new Error("Films could not be fetched!");
+                  }
+                const film_response = await response2.json();
+                //console.log(json_response)
+
+                  const response3 = await fetch(`http://localhost:3000/api/planets/${char_response.homeworld}`);
+                  if (!response3.ok) {
+                    throw new Error ("Planet could not be fetched!")
+                  }
+                const planet_response = await response3.json();
+                //console.log(json_response)
+
+                setCharacter({
+                    characterInfo: {...char_response},
+                    planetInfo: {...planet_response},
+                    filmsInfo: [...film_response]
+                })
             } catch (error) {
                 console.error('Error fetching characters:', error);
             }
         };
         fetchData();
       }, []);
-    
-
-    //const planetURL = 'http://localhost:3000/api/planet/:id'
-    //const filmsURL = `http://localhost:3000/api/characters/${id}/films`
-    // might as well do a fetch for the character/:id as well
-    // need to fetch homeworld name (we get id of planet)
-    // need to fetch what movie they were in (/api/characters/:id/films)
-
+      console.log(character)
 }
 
 export default Characters;

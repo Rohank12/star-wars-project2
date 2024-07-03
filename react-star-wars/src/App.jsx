@@ -45,7 +45,7 @@ function App() {
       <div id="charactersList">
         <Routes>
           <Route path="/" element={<Home data={data} />} />
-          <Route path="/characters/:id" element={<Characters data={data}/>} />
+          <Route path="/characters/:id" element={<Characters />} />
         </Routes>
       </div>
     </Router>
