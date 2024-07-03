@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Home from '../components/Home'
+import Planets from "../components/Planets";
 import Characters from "../components/Characters";
 import {
   BrowserRouter as Router,
@@ -14,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
         try {
-              const response = await fetch(import.meta.env.VITE_SWAPI_URL);            
+              const response = await fetch(import.meta.env.VITE_SWAPI_URL_2);            
               if (!response.ok) {
                 throw new Error('Data could not be fetched!');
             }
@@ -45,6 +46,7 @@ function App() {
       <div id="charactersList">
         <Routes>
           <Route path="/" element={<Home data={data} />} />
+          <Route path="/planets/:id" element={<Planets/>} />
           <Route path="/characters/:id" element={<Characters />} />
         </Routes>
       </div>
