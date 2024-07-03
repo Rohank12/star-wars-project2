@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Home from '../components/Home'
+import Characters from "../components/Characters";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from "react-router-dom";
 import './App.css'
 
 function App() {
@@ -22,6 +29,7 @@ function App() {
 
   return (
     <>
+    <Router>
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,8 +43,12 @@ function App() {
         </label>
       </div>
       <div id="charactersList">
-        <Home data={data} />
+        <Routes>
+          <Route path="/" element={<Home data={data} />} />
+          <Route path="/characters/:id" element={<Characters data={data}/>} />
+        </Routes>
       </div>
+    </Router>
     </>
   )
 }
